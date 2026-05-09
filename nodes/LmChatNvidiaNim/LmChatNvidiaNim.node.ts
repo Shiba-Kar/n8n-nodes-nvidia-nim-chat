@@ -1,4 +1,4 @@
-/* eslint-disable n8n-nodes-base/node-class-description-inputs-wrong-regular-node, n8n-nodes-base/node-class-description-outputs-wrong */
+ 
 
 import { ChatOpenAI, type ClientOptions } from '@langchain/openai';
 import {
@@ -22,6 +22,7 @@ export class LmChatNvidiaNim implements INodeType {
 		group: ['transform'],
 		version: 1,
 		description: 'For advanced usage with an AI chain or AI agent',
+		subtitle: '={{$parameter["model"]}}',
 		defaults: {
 			name: 'NVIDIA NIM Chat Model',
 		},
@@ -30,7 +31,7 @@ export class LmChatNvidiaNim implements INodeType {
 		outputNames: ['Model'],
 		credentials: [
 			{
-				name: 'nvidiaNimApi',
+				name: 'nvidiaNimChatApi',
 				required: true,
 			},
 		],
@@ -181,7 +182,7 @@ export class LmChatNvidiaNim implements INodeType {
 	};
 
 	async supplyData(this: ISupplyDataFunctions, itemIndex: number): Promise<SupplyData> {
-		const credentials = await this.getCredentials<NvidiaNimCredential>('nvidiaNimApi');
+		const credentials = await this.getCredentials<NvidiaNimCredential>('nvidiaNimChatApi');
 		const model = this.getNodeParameter('model', itemIndex) as string;
 
 		const options = this.getNodeParameter('options', itemIndex, {}) as {

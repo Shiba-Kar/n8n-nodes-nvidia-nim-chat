@@ -1,7 +1,7 @@
 {
   "name": "n8n-nodes-nvidia-nim-chat",
   "version": "0.1.0",
-  "description": "",
+  "description": "NVIDIA NIM Chat Model for n8n",
   "license": "MIT",
   "homepage": "",
   "keywords": [
@@ -29,10 +29,12 @@
   ],
   "n8n": {
     "n8nNodesApiVersion": 1,
-    "strict": true,
-    "credentials": [],
+    "strict": false,
+    "credentials": [
+      "dist/credentials/NvidiaNimChatApi.credentials.js"
+    ],
     "nodes": [
-      "dist/nodes/NvidiaNimChat/NvidiaNimChat.node.js"
+      "dist/nodes/LmChatNvidiaNim/LmChatNvidiaNim.node.js"
     ]
   },
   "devDependencies": {

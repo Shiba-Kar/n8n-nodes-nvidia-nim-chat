@@ -12,6 +12,7 @@ class LmChatNvidiaNim {
             group: ['transform'],
             version: 1,
             description: 'For advanced usage with an AI chain or AI agent',
+            subtitle: '={{$parameter["model"]}}',
             defaults: {
                 name: 'NVIDIA NIM Chat Model',
             },
@@ -20,7 +21,7 @@ class LmChatNvidiaNim {
             outputNames: ['Model'],
             credentials: [
                 {
-                    name: 'nvidiaNimApi',
+                    name: 'nvidiaNimChatApi',
                     required: true,
                 },
             ],
@@ -170,7 +171,7 @@ class LmChatNvidiaNim {
     }
     async supplyData(itemIndex) {
         var _a, _b;
-        const credentials = await this.getCredentials('nvidiaNimApi');
+        const credentials = await this.getCredentials('nvidiaNimChatApi');
         const model = this.getNodeParameter('model', itemIndex);
         const options = this.getNodeParameter('options', itemIndex, {});
         const timeout = (_a = options.timeout) !== null && _a !== void 0 ? _a : 360000;
@@ -201,4 +202,4 @@ class LmChatNvidiaNim {
     }
 }
 exports.LmChatNvidiaNim = LmChatNvidiaNim;
-//# sourceMappingURL=NvidiaNimChat.node.js.map
+//# sourceMappingURL=LmChatNvidiaNim.node.js.map

@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.NvidiaNimChat = void 0;
-class NvidiaNimChat {
+exports.NvidiaNimChatApi = void 0;
+class NvidiaNimChatApi {
     constructor() {
-        this.name = 'nvidiaNimChat';
-        this.displayName = 'NVIDIA NIM Chat';
+        this.name = 'nvidiaNimChatApi';
+        this.displayName = 'NVIDIA NIM Chat API';
+        this.icon = 'file:nvidia-nim.svg';
         this.documentationUrl = 'https://docs.nvidia.com/nim/';
         this.properties = [
             {
@@ -45,5 +46,5 @@ class NvidiaNimChat {
         };
     }
 }
-exports.NvidiaNimChat = NvidiaNimChat;
-//# sourceMappingURL=NvidiaNimChat.credentials.js.map
+exports.NvidiaNimChatApi = NvidiaNimChatApi;
+//# sourceMappingURL=NvidiaNimChatApi.credentials.js.map

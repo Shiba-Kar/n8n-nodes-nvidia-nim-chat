@@ -3,11 +3,13 @@ import {
 	ICredentialTestRequest,
 	ICredentialType,
 	INodeProperties,
+	Icon,
 } from 'n8n-workflow';
 
-export class NvidiaNimChat implements ICredentialType {
-	name = 'nvidiaNimChat';
-	displayName = 'NVIDIA NIM Chat';
+export class NvidiaNimChatApi implements ICredentialType {
+	name = 'nvidiaNimChatApi';
+	displayName = 'NVIDIA NIM Chat API';
+	icon: Icon = 'file:nvidia-nim.svg';
 	documentationUrl = 'https://docs.nvidia.com/nim/';
 	properties: INodeProperties[] = [
 		{
