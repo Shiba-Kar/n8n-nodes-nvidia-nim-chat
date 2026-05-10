@@ -18,17 +18,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # n8n-node is a Node CLI; keep Node on PATH alongside Bun.
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
-          cache: 'npm'
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
 
       - name: Install dependencies
-        run: 'npm ci'
+        run: |
+          if [ -f bun.lock ]; then
+            bun install --frozen-lockfile
+          else
+            bun install
+          fi
 
       - name: Run lint
-        run: 'npm run lint'
+        run: bun run lint
 
       - name: Run build
-        run: 'npm run build'
+        run: bun run build
