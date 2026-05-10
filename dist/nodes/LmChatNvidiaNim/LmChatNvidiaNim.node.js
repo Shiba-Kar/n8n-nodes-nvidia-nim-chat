@@ -8,6 +8,7 @@ class LmChatNvidiaNim {
         this.description = {
             displayName: 'NVIDIA NIM Chat Model',
             name: 'lmChatNvidiaNim',
+            subtitle: '={{$parameter["model"]}}',
             icon: 'file:nvidia-nim.svg',
             group: ['transform'],
             version: 1,
@@ -20,7 +21,7 @@ class LmChatNvidiaNim {
             outputNames: ['Model'],
             credentials: [
                 {
-                    name: 'nvidiaNimApi',
+                    name: 'nvidiaNimChatApi',
                     required: true,
                 },
             ],
