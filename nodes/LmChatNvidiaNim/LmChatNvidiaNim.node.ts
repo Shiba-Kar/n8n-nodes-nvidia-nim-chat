@@ -180,7 +180,7 @@ export class LmChatNvidiaNim implements INodeType {
 	};
 
 	async supplyData(this: ISupplyDataFunctions, itemIndex: number): Promise<SupplyData> {
-		const credentials = await this.getCredentials<NvidiaNimCredential>('nvidiaNimApi');
+		const credentials = await this.getCredentials<NvidiaNimCredential>('nvidiaNimChatApi');
 		const model = this.getNodeParameter('model', itemIndex) as string;
 
 		const options = this.getNodeParameter('options', itemIndex, {}) as {
