@@ -93,8 +93,7 @@ jobs:
           else
             bun install
           fi
-      - name: Make it public
-        run: bun publish --access=public
+  
       - name: Release
         # Publishes to npm with a provenance attestation (requires id-token: write above).
         # Lint and build run automatically as part of the release process.
