@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-nvidia-nim-chat",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "NVIDIA NIM Chat Model for n8n",
   "license": "MIT",
   "homepage": "",
