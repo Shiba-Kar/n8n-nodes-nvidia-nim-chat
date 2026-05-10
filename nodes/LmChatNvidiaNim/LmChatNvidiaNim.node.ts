@@ -1,5 +1,3 @@
-/* eslint-disable n8n-nodes-base/node-class-description-inputs-wrong-regular-node, n8n-nodes-base/node-class-description-outputs-wrong */
-
 import { ChatOpenAI, type ClientOptions } from '@langchain/openai';
 import {
 	NodeConnectionTypes,
