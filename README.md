@@ -1,47 +1,92 @@
 # n8n-nodes-nvidia-nim-chat
 
-This is an n8n community node. It lets you use _app/service name_ in your n8n workflows.
-
-_App/service name_ is _one or two sentences describing the service this node integrates with_.
+Use [NVIDIA NIM](https://www.nvidia.com/en-us/ai-data-science/foundation-models/) inference microservices as the chat language model in [n8n](https://n8n.io/) **AI Agent** and **AI Chain** workflows. The node speaks the OpenAI-compatible API surface that NIM exposes, so you can point it at NVIDIA-hosted endpoints or your own NIM deployment.
 
 [n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/sustainable-use-license/) workflow automation platform.
 
-[Installation](#installation)
-[Operations](#operations)
-[Credentials](#credentials)
-[Compatibility](#compatibility)
-[Usage](#usage)
-[Resources](#resources)
-[Version history](#version-history)
+## Contents
+
+- [Installation](#installation)
+- [Quick start](#quick-start)
+- [What this node does](#what-this-node-does)
+- [Credentials](#credentials)
+- [Compatibility](#compatibility)
+- [Developing this package](#developing-this-package)
+- [Resources](#resources)
+- [Version history](#version-history)
 
 ## Installation
 
-Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation.
+1. In n8n, open **Settings → Community nodes** (or your admin's equivalent).
+2. Install the package **`n8n-nodes-nvidia-nim-chat`**.
 
-## Operations
+For detailed steps, security notes, and Docker or CLI options, see the official guide: [Installing community nodes](https://docs.n8n.io/integrations/community-nodes/installation/).
 
-_List the operations supported by your node._
+## Quick start
+
+1. **Create credentials**  
+   In n8n, add **NVIDIA NIM Chat API** credentials (see [Credentials](#credentials)).
+
+2. **Add the node**  
+   Add **NVIDIA NIM Chat Model** to your workflow.
+
+3. **Connect it**  
+   Wire the node's **Model** output to the **Chat Model** input of an **AI Agent** or **AI Chain** node (this node has no regular inputs; it only supplies the model).
+
+4. **Pick a model**  
+   The **Model** dropdown is loaded from your `GET /models` endpoint. Choose the model your NIM deployment exposes.
+
+5. **Optional tuning**  
+   Open **Options** for temperature, top-p, max tokens, retries, timeouts, and response format (text or JSON).
+
+If you are new to n8n, the [Try it out](https://docs.n8n.io/try-it-out/) docs help you run your first workflows.
+
+## What this node does
+
+| Aspect | Details |
+|--------|---------|
+| **Role** | Supplies a chat LLM to AI Agent / AI Chain (output type: AI language model). |
+| **API** | OpenAI-compatible chat completions against your configured **Base URL**. |
+| **Models** | List is fetched dynamically from the API so it matches your account or self-hosted NIM. |
+
+**JSON responses:** If you set **Response Format** to **JSON**, include the word `json` in your prompt (as noted in the node UI) so the model returns valid JSON.
 
 ## Credentials
 
-_If users need to authenticate with the app/service, provide details here. You should include prerequisites (such as signing up with the service), available authentication methods, and how to set them up._
+Create **NVIDIA NIM Chat API** credentials in n8n:
+
+| Field | Description |
+|--------|-------------|
+| **API Key** | Your NVIDIA NGC API key. Create or manage keys at [NVIDIA NGC](https://ngc.nvidia.com). Stored and sent as a Bearer token in the `Authorization` header. |
+| **Base URL** | Root URL for the OpenAI-compatible API. Default: `https://integrate.api.nvidia.com/v1`. Use your own base URL if you run NIM on-premises or in your cloud. |
+
+Use **Test** on the credential to verify access; it calls `GET /models` on your base URL.
 
 ## Compatibility
 
-_State the minimum n8n version, as well as which versions you test against. You can also include any known version incompatibility issues._
+- **n8n:** Use a version that supports **community nodes** and built-in **AI Agent** / **AI Chain** (and LangChain-style model inputs). This package targets [n8n node API version 1](https://docs.n8n.io/integrations/creating-nodes/build/reference/node-versioning/).
+- A specific minimum n8n version is not pinned in this repo; if something fails to appear in the editor, upgrade n8n first.
 
-## Usage
+## Developing this package
 
-_This is an optional section. Use it to help users with any difficult or confusing aspects of the node._
+Clone the repository, install dependencies, then use the n8n node CLI:
 
-_By the time users are looking for community nodes, they probably already know n8n basics. But if you expect new users, you can link to the [Try it out](https://docs.n8n.io/try-it-out/) documentation to help them get started._
+```bash
+npm install
+npm run build    # production build → dist/
+npm run dev      # local n8n with this package (see n8n-node dev docs)
+npm run lint     # eslint via n8n-node
+```
+
+Release/version notes live in [CHANGELOG.md](./CHANGELOG.md).
 
 ## Resources
-* [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
-* _Link to app/service documentation._
+
+- [NVIDIA NIM documentation](https://docs.nvidia.com/nim/)
+- [n8n community nodes](https://docs.n8n.io/integrations/#community-nodes)
+- [Creating nodes overview](https://docs.n8n.io/integrations/creating-nodes/overview/)
+- [Repository](https://github.com/Shiba-Kar/n8n-nodes-nvidia-nim-chat)
 
 ## Version history
 
-_This is another optional section. If your node has multiple versions, include a short description of available versions and what changed, as well as any compatibility impact._
-# n8n-nodes-nvidia-nim-chat
-
+See [CHANGELOG.md](./CHANGELOG.md) for release history.
